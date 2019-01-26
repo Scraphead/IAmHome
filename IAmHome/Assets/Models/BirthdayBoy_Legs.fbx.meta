@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 92ba31738d9c8c94ab1a9799f1a7fc81
+guid: 16db468c289c02b4d9a0f78fac9e51e0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Emo_body_low
-    100004: PM3D_Circle3D1
-    400000: //RootNode
-    400002: Emo_body_low
-    400004: PM3D_Circle3D1
-    2100000: Emo_body_low
-    2100002: PM3D_Circle3D1
-    2300000: Emo_body_low
-    2300002: PM3D_Circle3D1
-    3300000: Emo_body_low
-    3300002: PM3D_Circle3D1
-    4300000: Emo_body_low
-    4300002: PM3D_Circle3D1
+    100000: BirthdayBoy_hand2_l
+    100002: BirthdayBoy_hand_l
+    100004: //RootNode
+    100006: lowChad_SeamsColor
+    400000: BirthdayBoy_hand2_l
+    400002: BirthdayBoy_hand_l
+    400004: //RootNode
+    400006: lowChad_SeamsColor
+    2100000: BirthdayBoy_hand_l
+    2100002: BirthdayBoy_hand2_l
+    2100004: lowChad_SeamsColor
+    2300000: BirthdayBoy_hand2_l
+    2300002: BirthdayBoy_hand_l
+    2300004: lowChad_SeamsColor
+    3300000: BirthdayBoy_hand2_l
+    3300002: BirthdayBoy_hand_l
+    3300004: lowChad_SeamsColor
+    4300000: BirthdayBoy_hand_l
+    4300002: BirthdayBoy_hand2_l
+    4300004: lowChad_SeamsColor
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -48,7 +54,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 0.7
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
