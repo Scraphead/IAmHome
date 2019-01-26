@@ -8,6 +8,7 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour
 {
     public float speed = 6.0f;
+    public float bodyRotateSpeed = 20;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
@@ -16,6 +17,8 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
 
     public GameObject cameraRotate;
+    public GameObject bodyRotate;
+    
 
     void Start()
     {
@@ -27,10 +30,6 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-//        if (controller.isGrounded)
-//        {
-        // We are grounded, so recalculate
-        // move direction directly from axes
 //
 //        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 //        moveDirection = transform.TransformDirection(moveDirection);
@@ -41,6 +40,7 @@ public class CharacterMovement : MonoBehaviour
         var cameraEuler = cameraRotate.transform.localEulerAngles;
         cameraRotate.transform.localEulerAngles = new Vector3(
             cameraEuler.x + (Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime),
+//            Mathf.Clamp(cameraEuler.x + (Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime),-89, 89),
             cameraEuler.y + (Input.GetAxisRaw("Mouse X") * cameraSpeed * Time.deltaTime),
             cameraEuler.z);
 //        cameraRotate.transform.Rotate(Vector3.left, Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime);
@@ -53,8 +53,10 @@ public class CharacterMovement : MonoBehaviour
         var leftMovement = projectedXZplaneLeft.normalized * Input.GetAxis("Horizontal");
 
         moveDirection = (forwardMovement + leftMovement)* speed;
+
+        var bodyEuler = bodyRotate.transform.localEulerAngles;
         
-        
+        bodyRotate.transform.localEulerAngles = new Vector3(bodyEuler.x, bodyEuler.y + Input.GetAxisRaw("RotateBody") * bodyRotateSpeed, bodyEuler.x);
         
         
         
@@ -63,7 +65,6 @@ public class CharacterMovement : MonoBehaviour
         {
             moveDirection.y = jumpSpeed;
         }
-//        }
 
         // Apply gravity
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
