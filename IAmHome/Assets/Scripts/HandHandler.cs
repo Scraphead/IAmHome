@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class HandHandler : MonoBehaviour
 {
-    public int playerId = 0;
+    public GameObject HandPivot;
 
     public float moveSpeed = 3.0f;
-   
-  
 
-    private CharacterController cc;
+    public float maxPosY = 4;
+    public float maxPosX = 4;
+
+
+
     private Vector3 moveVector;
     
     
     void OnEnable()
     {
-      
-        cc = GetComponent<CharacterController>();
+
+       
     }
 
     void Update()
@@ -25,27 +27,41 @@ public class HandHandler : MonoBehaviour
         
 
         GetInput();
-        ProcessInput();
+        
     }
 
     private void GetInput()
     {
-      
 
-        //moveVector.x = Input.GetKeyDown(KeyCode.L); 
-        //moveVector.y = GetAxis("MoveHandVertical");
-     
-    }
 
-    private void ProcessInput()
-    {
-      
-        if (moveVector.x != 0.0f || moveVector.y != 0.0f)
+        if (Input.GetKey(KeyCode.I))
         {
-            cc.Move(moveVector * moveSpeed * Time.deltaTime);
+            gameObject.transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            gameObject.transform.position += Vector3.up * moveSpeed * Time.deltaTime;
         }
 
-       
+        if (Input.GetKey(KeyCode.L))
+        {
+            gameObject.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.J))
+        {
+            gameObject.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        }
+
+        Vector3 clampedPosition = transform.position;
+
+        clampedPosition.y = Mathf.Clamp(transform.position.y, -maxPosY, maxPosY);
+        clampedPosition.x = Mathf.Clamp(transform.position.x, -maxPosX, maxPosX);
+
+
+        transform.position = clampedPosition;
     }
+
+
+
 }
 
