@@ -16,8 +16,19 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
 
-    public GameObject cameraRotate;
+    public GameObject cameraRotateY;
+    public GameObject cameraRotateX;
+    private float cameraRotateXAngle = 0;
+    public GameObject cameraOffsetTilt;
+    
+    public float cameraTiltDistanceOffsetMultiplierZ = 0.004f;
+    public float cameraTiltDistanceOffsetMultiplierY = -0.001f;
+    public float tiltUpRange = -88f;
+    public float tiltDownRange = 120f;
+    
     public GameObject bodyRotate;
+
+    private float currentFallSpeed = 0;
     
 
     void Start()
@@ -36,39 +47,53 @@ public class CharacterMovement : MonoBehaviour
 //        moveDirection = moveDirection * speed;
 
 
-
-        var cameraEuler = cameraRotate.transform.localEulerAngles;
-        cameraRotate.transform.localEulerAngles = new Vector3(
-            cameraEuler.x + (Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime),
-//            Mathf.Clamp(cameraEuler.x + (Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime),-89, 89),
+        var cameraEuler = cameraRotateY.transform.localEulerAngles;
+        cameraRotateY.transform.localEulerAngles = new Vector3(
+            cameraEuler.x,
             cameraEuler.y + (Input.GetAxisRaw("Mouse X") * cameraSpeed * Time.deltaTime),
             cameraEuler.z);
-//        cameraRotate.transform.Rotate(Vector3.left, Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime);
-//        cameraRotate.transform.Rotate(Vector3.up, ;
 
-        var projectedXZplaneForward = Vector3.ProjectOnPlane(cameraRotate.transform.forward, Vector3.up);
+        cameraRotateXAngle = cameraRotateXAngle + Input.GetAxisRaw("Mouse Y") * cameraSpeed * Time.deltaTime * -1;
+        cameraRotateXAngle = Mathf.Clamp(cameraRotateXAngle, tiltUpRange, tiltDownRange);
+        cameraRotateX.transform.localEulerAngles = new Vector3(cameraRotateXAngle,0,0);
+
+        var projectedXZplaneForward = Vector3.ProjectOnPlane(cameraRotateY.transform.forward, Vector3.up);
         var forwardMovement = projectedXZplaneForward.normalized * Input.GetAxis("Vertical");
-        
-        var projectedXZplaneLeft = Vector3.ProjectOnPlane(cameraRotate.transform.right, Vector3.up);
+
+        var projectedXZplaneLeft = Vector3.ProjectOnPlane(cameraRotateY.transform.right, Vector3.up);
         var leftMovement = projectedXZplaneLeft.normalized * Input.GetAxis("Horizontal");
 
-        moveDirection = (forwardMovement + leftMovement)* speed;
+        moveDirection = (forwardMovement + leftMovement) * speed;
+
+        
+        
+        cameraOffsetTilt.transform.localPosition = new Vector3(
+            0,
+            Mathf.Max(cameraRotateXAngle, 0) * cameraTiltDistanceOffsetMultiplierY,
+            Mathf.Max(cameraRotateXAngle, 0) * cameraTiltDistanceOffsetMultiplierZ);
 
         var bodyEuler = bodyRotate.transform.localEulerAngles;
-        
-        bodyRotate.transform.localEulerAngles = new Vector3(bodyEuler.x, bodyEuler.y + Input.GetAxisRaw("RotateBody") * bodyRotateSpeed, bodyEuler.x);
-        
-        
-        
-        
-        if (Input.GetButton("Jump"))
+
+        bodyRotate.transform.localEulerAngles = new Vector3(bodyEuler.x,
+            bodyEuler.y + Input.GetAxisRaw("RotateBody") * bodyRotateSpeed, bodyEuler.x);
+
+
+        if (controller.isGrounded)
         {
-            moveDirection.y = jumpSpeed;
+            currentFallSpeed = 0;
         }
+        if (Input.GetButton("Jump") && controller.isGrounded)
+        {
+            currentFallSpeed = jumpSpeed;
+//            moveDirection.y = jumpSpeed;
+        }
+        
+       
 
         // Apply gravity
-        moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
+        moveDirection.y = moveDirection.y + currentFallSpeed;
 
+        currentFallSpeed = currentFallSpeed - (gravity * Time.deltaTime);
         // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
     }
