@@ -52,13 +52,13 @@ public class HandHandler : MonoBehaviour
             gameObject.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
         }
 
-        Vector3 clampedPosition = transform.position;
+        //Vector3 clampedPosition = transform.position;
 
-        clampedPosition.y = Mathf.Clamp(transform.position.y, -maxPosY, maxPosY);
-        clampedPosition.x = Mathf.Clamp(transform.position.x, -maxPosX, maxPosX);
+        //clampedPosition.y = Mathf.Clamp(transform.position.y, -maxPosY, maxPosY);
+        //clampedPosition.x = Mathf.Clamp(transform.position.x, -maxPosX, maxPosX);
 
 
-        transform.position = clampedPosition;
+        //transform.position = clampedPosition;
     }
 
 
