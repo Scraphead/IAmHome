@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 public enum EGameState
 {
     None,
@@ -48,9 +49,26 @@ public class GameManager : MonoBehaviour
             case EGameState.Game_Over:
 
                 break;
+            case EGameState.Reset_Game:
+                curentGameState = EGameState.Game_Started;
+
+                if (OnGameStateChangedCallback != null)
+                    OnGameStateChangedCallback(curentGameState);
+                break;
         }
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            RestartGame();
+    }
+    public void RestartGame()
+    {
+        curentGameState = EGameState.Reset_Game;
+        if (OnGameStateChangedCallback != null)
+            OnGameStateChangedCallback(curentGameState);
+        SceneManager.LoadScene(0);
+    }
     public void GameFinnished()
     {
         curentGameState = EGameState.Game_Over;
