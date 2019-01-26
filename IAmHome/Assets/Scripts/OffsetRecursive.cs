@@ -9,7 +9,10 @@ public class OffsetRecursive : MonoBehaviour
     public GameObject offsetTo;
     public GameObject rotateOffsetTo;
     public bool invertRotate;
-
+    
+//    public GameObject offsetFromHead;
+//    public GameObject offsetToHead;
+    
     public float scale; 
     // Start is called before the first frame update
     void Start()
