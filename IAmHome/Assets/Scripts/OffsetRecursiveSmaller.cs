@@ -10,6 +10,9 @@ public class OffsetRecursiveSmaller : MonoBehaviour
     public GameObject rotateOffsetTo;
     public bool invertRotate;
 
+
+    
+    
     public float scale; 
     // Start is called before the first frame update
     void Start()
