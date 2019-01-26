@@ -1,16 +1,26 @@
 fileFormatVersion: 2
-guid: 4bc16035b2e4db146bbe630fff4dd9bb
+guid: cd55c456006f80c498fd87087c9fda38
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: default
-    100002: //RootNode
-    400000: default
-    400002: //RootNode
-    2100000: None
-    2300000: default
-    3300000: default
-    4300000: default
+    100000: //RootNode
+    100002: PM3D_Cylinder3D1
+    100004: PM3D_Cylinder3D11
+    400000: //RootNode
+    400002: PM3D_Cylinder3D1
+    400004: PM3D_Cylinder3D11
+    2100000: PM3D_Cylinder3D1_SeamsColor
+    2100002: PM3D_Cylinder3D11
+    2100004: PM3D_Cylinder3D1
+    2300000: //RootNode
+    2300002: PM3D_Cylinder3D1
+    2300004: PM3D_Cylinder3D11
+    3300000: //RootNode
+    3300002: PM3D_Cylinder3D1
+    3300004: PM3D_Cylinder3D11
+    4300000: PM3D_Cylinder3D1_SeamsColor
+    4300002: PM3D_Cylinder3D11
+    4300004: PM3D_Cylinder3D1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -42,7 +52,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -66,10 +76,10 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 145
-    normalImportMode: 1
-    tangentImportMode: 4
-    normalCalculationMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
