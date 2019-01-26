@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a66bde3d35150c43919a6789f38770f, type: 3}
-  m_Name: Pick
+  m_Name: PickUpKeyEvent
   m_EditorClassIdentifier: 
   DeveloperDescription: 

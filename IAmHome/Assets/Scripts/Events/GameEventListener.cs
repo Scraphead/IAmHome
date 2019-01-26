@@ -61,8 +61,8 @@ using UnityEngine.Events;
 
             if (eventType.gameState != EGameState.None)
             {
-                //GameManager.Instance.RegisterToStateCallbacks(OnGameStateChanged);
-            }
+            //GameManager.Instance.RegisterToStateCallbacks(OnGameStateChanged);
+        }
         }
 
 
@@ -73,10 +73,10 @@ using UnityEngine.Events;
 
             if (eventType.gameState != EGameState.None)
             {
-                //if (GameManager.Instance != null)
-                //    GameManager.Instance.UnregisterStateCallback(OnGameStateChanged);
+            //if (GameManager.Instance != null)
+                //GameManager.Instance.UnregisterStateCallback(OnGameStateChanged);
 
-            }
+        }
 
         }
        

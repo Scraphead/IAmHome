@@ -1,13 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using WiggedOut;
 
-namespace WiggedOut.Events
-{
-    //SHOULD MAKE THIS SO YOU CAN CHOICE BETWEEN SCRIPTABLE EVENTS AND FROM GAMENUMS EVENTS
-   
-    //Should also make a propertydrawer like the floatreference drawer so designer can select -
-    //if they want to use enums or SO
+
+
+  
     [CreateAssetMenu]
     public class GameEvent : ScriptableObject
     {
@@ -40,4 +36,3 @@ namespace WiggedOut.Events
                 _eventListeners.Remove(listener);
         }
     }
-}
