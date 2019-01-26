@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public Action<EGameState> OnGameStateChangedCallback { get; set; }
     private EGameState curentGameState;
+    public bool haveKey = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,23 +29,33 @@ public class GameManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
+      
+    }
+    private void Start()
+    {
         curentGameState = EGameState.Game_Started;
         if (OnGameStateChangedCallback != null)
             OnGameStateChangedCallback(curentGameState);
     }
-
     public void OnGamestateChanged(EGameState gameState)
     {
         switch (gameState)
         {
             case EGameState.Game_Started:
-
+                haveKey = false;
                 break;
 
             case EGameState.Game_Over:
 
                 break;
         }
+    }
+
+    public void GameFinnished()
+    {
+        curentGameState = EGameState.Game_Over;
+        if (OnGameStateChangedCallback != null)
+            OnGameStateChangedCallback(curentGameState);
     }
 
 
