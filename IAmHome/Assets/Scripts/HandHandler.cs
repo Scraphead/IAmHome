@@ -36,20 +36,20 @@ public class HandHandler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.I))
         {
-            gameObject.transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += Vector3.down * moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.K))
         {
-            gameObject.transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += Vector3.up * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.L))
         {
-            gameObject.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += Vector3.right * moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.J))
         {
-            gameObject.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += Vector3.left * moveSpeed * Time.deltaTime;
         }
 
         //Vector3 clampedPosition = transform.position;
