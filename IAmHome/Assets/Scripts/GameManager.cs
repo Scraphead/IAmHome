@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Action<EGameState> OnGameStateChangedCallback { get; set; }
     private EGameState curentGameState;
     public bool haveKey = false;
+    public bool openedDoor = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         {
             case EGameState.Game_Started:
                 haveKey = false;
+                openedDoor = false;
                 break;
 
             case EGameState.Game_Over:
@@ -69,11 +71,15 @@ public class GameManager : MonoBehaviour
             OnGameStateChangedCallback(curentGameState);
         SceneManager.LoadScene(0);
     }
-    public void GameFinnished()
+    public void GameFinnishhed()
     {
-        curentGameState = EGameState.Game_Over;
-        if (OnGameStateChangedCallback != null)
-            OnGameStateChangedCallback(curentGameState);
+        if (haveKey && openedDoor)
+        {
+            curentGameState = EGameState.Game_Over;
+            if (OnGameStateChangedCallback != null)
+                OnGameStateChangedCallback(curentGameState);
+        }
+       
     }
 
 
