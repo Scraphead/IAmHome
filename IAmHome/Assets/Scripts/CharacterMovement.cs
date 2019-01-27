@@ -100,9 +100,16 @@ public class CharacterMovement : MonoBehaviour
             currentFallSpeed = jumpSpeed;
 //            moveDirection.y = jumpSpeed;
         }
-        
-       
 
+        if (moveDirection.magnitude > 0.1)
+        {
+            LegWalkManager.instance.StartWalk();
+        }
+        else
+        {
+            LegWalkManager.instance.StopWalk();
+        }
+       
         // Apply gravity
         moveDirection.y = moveDirection.y + currentFallSpeed;
 
