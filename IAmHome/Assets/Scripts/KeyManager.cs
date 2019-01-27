@@ -31,24 +31,28 @@ public class KeyManager : MonoBehaviour
             DisableAllKeys();
             KeyOnDesk = true;
             PlayKey();
+            HandCloseManager.instance.OpenHand();
         }
         if (Input.GetKey("2"))
         {
             DisableAllKeys();
             KeyOnHand = true;
             PlayKey();
+            HandCloseManager.instance.CloseHand();
         }
         if (Input.GetKey("3"))
         {
             DisableAllKeys();
             KeyOnFloor = true;
             PlayKey();
+            HandCloseManager.instance.OpenHand();
         }
         if (Input.GetKey("4"))
         {
             DisableAllKeys();
             KeyOverHead = true;
             PlayKey();
+            HandCloseManager.instance.OpenHand();
         }
         if (Input.GetKey("5"))
         {
@@ -56,6 +60,7 @@ public class KeyManager : MonoBehaviour
             KeyInDoor = true;
             if(!doorUnlock.isPlaying)
                 doorUnlock.Play();
+            HandCloseManager.instance.OpenHand();
         }
     }
 
