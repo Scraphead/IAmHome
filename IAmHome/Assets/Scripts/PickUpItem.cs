@@ -11,10 +11,13 @@ public class PickUpItem : MonoBehaviour
 
     public void OnPickUpItem(GameObject key)
     {
+        if (GameManager.Instance.haveKey)
+            return;
+        GameManager.Instance.haveKey = true;
         keyObj = key.gameObject.transform.parent.gameObject;
         if (onPickUpItemEvent != null)
             onPickUpItemEvent.Invoke();
-        GameManager.Instance.haveKey = true;
+        
         MoveKeyToHand(keyObj);
     }
 
@@ -25,26 +28,29 @@ public class PickUpItem : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-
+            DropKey();
         }
     }
 
     public void DropKey()
     {
-        if (!GameManager.Instance.haveKey)
-        {
-            Debug.Log("No key in hand to drop");
-            return;
-        }
+        //if (!GameManager.Instance.haveKey)
+        //{
+        //    Debug.Log("No key in hand to drop");
+        //    return;
+        //}
+        if(keyObj != null)
+         keyObj.transform.parent = null;
+        GameManager.Instance.haveKey = false;
 
-        keyObj.transform.parent = null;
+
     }
-    private void OnTriggerEnter  (Collider other)
+    private void OnTriggerStay  (Collider other)
     {
        
-        if (other.CompareTag("Key"))
+        if (other.CompareTag("Key") && !GameManager.Instance.haveKey)
         {
             Debug.Log("Touched Key!");
             
