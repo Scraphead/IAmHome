@@ -6,12 +6,18 @@ ModelImporter:
     100000: //RootNode
     100002: PM3D_Cylinder3D1
     100004: PM3D_Cylinder3D11
+    100006: Camera
+    100008: Lamp
     400000: //RootNode
     400002: PM3D_Cylinder3D1
     400004: PM3D_Cylinder3D11
+    400006: Camera
+    400008: Lamp
+    2000000: Camera
     2100000: PM3D_Cylinder3D1_SeamsColor
     2100002: PM3D_Cylinder3D11
     2100004: PM3D_Cylinder3D1
+    2100006: PM3D_Cylinder3D11.001
     2300000: //RootNode
     2300002: PM3D_Cylinder3D1
     2300004: PM3D_Cylinder3D11
@@ -21,6 +27,7 @@ ModelImporter:
     4300000: PM3D_Cylinder3D1_SeamsColor
     4300002: PM3D_Cylinder3D11
     4300004: PM3D_Cylinder3D1
+    10800000: Lamp
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -52,7 +59,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -76,8 +83,8 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 55
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
