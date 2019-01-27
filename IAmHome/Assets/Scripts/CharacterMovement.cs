@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
 
     public AudioSource rotateAudio;
     public AudioSource walkAudio;
+    public AudioSource moveHand;
     
     public float speed = 6.0f;
     public float bodyRotateSpeed = 20;
@@ -87,6 +88,8 @@ public class CharacterMovement : MonoBehaviour
         rotateAudio.volume = Mathf.Abs(Input.GetAxis("RotateBody"));
         walkAudio.volume = Mathf.Min(moveDirection.magnitude, 1);
 
+        var vol = KeyDown("j") + KeyDown("k") + KeyDown("l") + KeyDown("i");
+        moveHand.volume = Mathf.Min(vol, 1);
 
         if (controller.isGrounded)
         {
@@ -107,4 +110,9 @@ public class CharacterMovement : MonoBehaviour
         // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
     }
+    private int KeyDown(string key)
+    {
+        return Input.GetKey(key) ? 1 : 0;
+    }
+
 }
