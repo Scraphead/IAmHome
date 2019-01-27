@@ -7,6 +7,10 @@ using System.Collections;
 
 public class CharacterMovement : MonoBehaviour
 {
+
+    public AudioSource rotateAudio;
+    public AudioSource walkAudio;
+    
     public float speed = 6.0f;
     public float bodyRotateSpeed = 20;
     public float jumpSpeed = 8.0f;
@@ -29,6 +33,8 @@ public class CharacterMovement : MonoBehaviour
     public GameObject bodyRotate;
 
     private float currentFallSpeed = 0;
+    
+    
     
 
     void Start()
@@ -76,6 +82,10 @@ public class CharacterMovement : MonoBehaviour
 
         bodyRotate.transform.localEulerAngles = new Vector3(bodyEuler.x,
             bodyEuler.y + Input.GetAxisRaw("RotateBody") * bodyRotateSpeed, bodyEuler.x);
+        
+        
+        rotateAudio.volume = Mathf.Abs(Input.GetAxis("RotateBody"));
+        walkAudio.volume = Mathf.Min(moveDirection.magnitude, 1);
 
 
         if (controller.isGrounded)

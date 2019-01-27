@@ -12,6 +12,9 @@ public class KeyManager : MonoBehaviour
     public bool KeyOnFloor;
     public bool KeyOverHead;
     public bool KeyInDoor;
+
+    public AudioSource keyMove;
+    public AudioSource doorUnlock;
     
     private void Awake()
     {
@@ -27,29 +30,40 @@ public class KeyManager : MonoBehaviour
         {
             DisableAllKeys();
             KeyOnDesk = true;
+            PlayKey();
         }
         if (Input.GetKey("2"))
         {
             DisableAllKeys();
             KeyOnHand = true;
+            PlayKey();
         }
         if (Input.GetKey("3"))
         {
             DisableAllKeys();
             KeyOnFloor = true;
+            PlayKey();
         }
         if (Input.GetKey("4"))
         {
             DisableAllKeys();
             KeyOverHead = true;
+            PlayKey();
         }
         if (Input.GetKey("5"))
         {
             DisableAllKeys();
             KeyInDoor = true;
+            if(!doorUnlock.isPlaying)
+                doorUnlock.Play();
         }
     }
 
+    public void PlayKey()
+    {
+        if(!keyMove.isPlaying)
+            keyMove.Play();  
+    }
     private void DisableAllKeys()
     {
         KeyOnDesk = false;
